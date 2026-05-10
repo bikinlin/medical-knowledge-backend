@@ -1,23 +1,9 @@
 {
+  "name": "medical-knowledge",
+  "version": 2,
   "rewrites": [
-    { "source": "/api/:path*", "destination": "/api/:path*" }
-  ],
-  "headers": [
-    {
-      "source": "/api/(.*)",
-      "headers": [
-        { "key": "Cache-Control", "value": "s-maxage=300, stale-while-revalidate=600" }
-      ]
-    }
-  ],
-  "crons": [
-    {
-      "path": "/api/news",
-      "schedule": "0 6 * * *"
-    },
-    {
-      "path": "/api/tech",
-      "schedule": "0 6 * * *"
-    }
+    { "source": "/api/news", "destination": "/api/news" },
+    { "source": "/api/tech", "destination": "/api/tech" },
+    { "source": "/api/health", "destination": "/api/health" }
   ]
 }
