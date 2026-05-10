@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "vercel-api.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/news",
+      "dest": "/vercel-api.js"
+    },
+    {
+      "src": "/api/tech",
+      "dest": "/vercel-api.js"
+    },
+    {
+      "src": "/api/all",
+      "dest": "/vercel-api.js"
+    },
+    {
+      "src": "/api/health",
+      "dest": "/vercel-api.js"
+    }
+  ]
+}

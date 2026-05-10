@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>医疗弱电智能化知识库</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>医疗弱电智能化知识库</h1>
+                <p>智能医疗 · 数字化未来</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home" class="nav-link active">首页</a></li>
+                    <li><a href="#news" class="nav-link">政策资讯</a></li>
+                    <li><a href="#tech" class="nav-link">技术动态</a></li>
+                    <li><a href="#categories" class="nav-link">分类浏览</a></li>
+                    <li><a href="#search" class="nav-link">知识搜索</a></li>
+                    <li><a href="#about" class="nav-link">关于我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <h2>医疗行业弱电智能化与信息化</h2>
+                <p>汇聚前沿知识，助力智慧医疗建设</p>
+                <div class="search-box">
+                    <input type="text" id="heroSearch" placeholder="搜索知识内容...">
+                    <button id="heroSearchBtn">搜索</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="news" class="news-section">
+            <div class="container">
+                <h2>政策资讯</h2>
+                <div class="news-grid" id="newsGrid"></div>
+            </div>
+        </section>
+
+        <section id="tech" class="tech-section">
+            <div class="container">
+                <h2>技术动态</h2>
+                <div class="tech-grid" id="techGrid"></div>
+            </div>
+        </section>
+
+        <section id="categories" class="categories-section">
+            <div class="container">
+                <h2>知识分类</h2>
+                <div class="categories-grid" id="categoriesGrid"></div>
+            </div>
+        </section>
+
+        <section id="search" class="search-section">
+            <div class="container">
+                <h2>知识搜索</h2>
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="输入关键词搜索...">
+                    <select id="categoryFilter">
+                        <option value="">全部类别</option>
+                    </select>
+                    <button id="searchBtn">搜索</button>
+                </div>
+                <div class="results-container" id="resultsContainer"></div>
+            </div>
+        </section>
+
+        <section id="knowledge-list" class="knowledge-section">
+            <div class="container">
+                <h2>热门知识</h2>
+                <div class="knowledge-grid" id="knowledgeGrid"></div>
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <div class="container">
+                <h2>关于我们</h2>
+                <div class="about-content">
+                    <h3>医疗弱电智能化知识库</h3>
+                    <p>本知识库致力于为医疗行业弱电智能化、信息化领域提供专业的知识分享平台，涵盖综合布线、医疗专项系统、安全防范、信息化系统、楼宇自控、医护通信、数据中心等多个专业领域。</p>
+                    <p>我们每天自动更新政策资讯和技术动态，为行业从业者提供最新的政策法规、行业标准、前沿技术和产品应用信息。</p>
+                    <div class="contact-info">
+                        <h4>联系人信息</h4>
+                        <p>👤 姓名：林壁宏</p>
+                        <p>📞 电话：13923834603</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 医疗弱电智能化知识库. 保留所有权利.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "name": "medical-knowledge-frontend",
+  "version": "1.0.0",
+  "description": "医疗弱电智能化知识库前端",
+  "scripts": {
+    "build": "mkdir -p dist && cp index.html dist/ && cp styles.css dist/ && cp script.js dist/",
+    "deploy": "npm run build"
+  }
+}

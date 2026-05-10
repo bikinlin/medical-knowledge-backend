@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>医疗弱电智能化知识库</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 20px 15px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+        
+        .header p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        
+        .tab-bar {
+            display: flex;
+            background: white;
+            border-bottom: 1px solid #e0e0e0;
+            position: sticky;
+            top: 70px;
+            z-index: 99;
+        }
+        
+        .tab-item {
+            flex: 1;
+            padding: 12px 0;
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .tab-item.active {
+            color: #1e3c72;
+            border-bottom-color: #1e3c72;
+            font-weight: 600;
+        }
+        
+        .content {
+            padding: 15px;
+        }
+        
+        .section {
+            display: none;
+        }
+        
+        .section.active {
+            display: block;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        
+        .news-card {
+            border-left: 3px solid #ff9800;
+        }
+        
+        .tech-card {
+            border-left: 3px solid #2196f3;
+        }
+        
+        .card h3 {
+            font-size: 16px;
+            color: #1e3c72;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+        
+        .card .meta {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 8px;
+        }
+        
+        .card p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .card .tags {
+            margin-top: 8px;
+        }
+        
+        .tag {
+            display: inline-block;
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            margin-right: 5px;
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        
+        .category-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        
+        .category-item .icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+        
+        .category-item h4 {
+            font-size: 14px;
+            color: #1e3c72;
+            margin-bottom: 4px;
+        }
+        
+        .category-item p {
+            font-size: 11px;
+            color: #888;
+        }
+        
+        .search-box {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .search-box input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 20px;
+            font-size: 14px;
+            outline: none;
+        }
+        
+        .search-box button {
+            padding: 10px 20px;
+            background: #1e3c72;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        .knowledge-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        
+        .knowledge-item h3 {
+            font-size: 15px;
+            color: #1e3c72;
+            margin-bottom: 8px;
+        }
+        
+        .knowledge-item .category-tag {
+            display: inline-block;
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            margin-bottom: 8px;
+        }
+        
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            display: flex;
+            border-top: 1px solid #e0e0e0;
+            padding: 8px 0;
+            z-index: 100;
+        }
+        
+        .nav-item {
+            flex: 1;
+            text-align: center;
+            font-size: 11px;
+            color: #666;
+            cursor: pointer;
+        }
+        
+        .nav-item.active {
+            color: #1e3c72;
+        }
+        
+        .nav-item .icon {
+            font-size: 20px;
+            display: block;
+            margin-bottom: 2px;
+        }
+        
+        .refresh-hint {
+            text-align: center;
+            padding: 10px;
+            color: #888;
+            font-size: 12px;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #888;
+        }
+        
+        .update-time {
+            text-align: center;
+            font-size: 11px;
+            color: #888;
+            padding: 8px;
+            background: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🏥 医疗弱电智能化知识库</h1>
+        <p>智能医疗 · 数字化未来</p>
+    </div>
+    
+    <div class="tab-bar">
+        <div class="tab-item active" data-tab="news">政策资讯</div>
+        <div class="tab-item" data-tab="tech">技术动态</div>
+        <div class="tab-item" data-tab="knowledge">知识库</div>
+        <div class="tab-item" data-tab="category">分类</div>
+    </div>
+    
+    <div class="content">
+        <div id="news-section" class="section active">
+            <div class="refresh-hint">📰 每天自动更新政策资讯</div>
+            <div id="news-list"></div>
+        </div>
+        
+        <div id="tech-section" class="section">
+            <div class="refresh-hint">🚀 每天自动更新技术动态</div>
+            <div id="tech-list"></div>
+        </div>
+        
+        <div id="knowledge-section" class="section">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="搜索知识内容...">
+                <button onclick="performSearch()">搜索</button>
+            </div>
+            <div id="knowledge-list"></div>
+        </div>
+        
+        <div id="category-section" class="section">
+            <div class="category-grid" id="category-grid"></div>
+        </div>
+    </div>
+    
+    <div class="bottom-nav">
+        <div class="nav-item active" data-tab="news">
+            <span class="icon">📰</span>
+            资讯
+        </div>
+        <div class="nav-item" data-tab="tech">
+            <span class="icon">🚀</span>
+            技术
+        </div>
+        <div class="nav-item" data-tab="knowledge">
+            <span class="icon">📚</span>
+            知识
+        </div>
+        <div class="nav-item" data-tab="category">
+            <span class="icon">📂</span>
+            分类
+        </div>
+    </div>
+
+    <script>
+        const API_BASE_URL = 'https://medical-knowledge.up.railway.app';
+        
+        const knowledgeData = [
+            { id: 1, title: "医院智能化综合布线系统设计规范", category: "综合布线", description: "医院智能化综合布线系统是医疗信息化的基础。" },
+            { id: 2, title: "手术室弱电系统集成方案", category: "医疗专项系统", description: "现代手术室需要集成多种弱电系统。" },
+            { id: 3, title: "医院安防监控系统建设要点", category: "安全防范", description: "医院作为人员密集场所，安防监控系统建设至关重要。" },
+            { id: 4, title: "HIS系统与弱电系统集成方案", category: "信息化系统", description: "医院信息系统(HIS)是医院信息化的核心。" },
+            { id: 5, title: "医用气体监测与报警系统", category: "医疗专项系统", description: "医用气体是医院正常运行的生命线。" },
+            { id: 6, title: "医院楼宇自控系统节能优化", category: "楼宇自控", description: "医院建筑能耗高，通过楼宇自控系统实现节能。" }
+        ];
+        
+        const categories = [
+            { name: "综合布线", icon: "📡" },
+            { name: "医疗专项系统", icon: "🏥" },
+            { name: "安全防范", icon: "📹" },
+            { name: "信息化系统", icon: "💻" },
+            { name: "楼宇自控", icon: "🌱" },
+            { name: "医护通信", icon: "📞" }
+        ];
+        
+        let newsData = [];
+        let techData = [];
+        
+        function init() {
+            setupTabs();
+            renderCategories();
+            renderKnowledgeList();
+            loadData();
+        }
+        
+        async function loadData() {
+            await Promise.all([loadNews(), loadTech()]);
+        }
+        
+        async function loadNews() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/news`);
+                const result = await response.json();
+                if (result.success) {
+                    newsData = result.data;
+                    renderNews();
+                }
+            } catch (error) {
+                document.getElementById('news-list').innerHTML = '<div class="loading">正在加载政策资讯...</div>';
+            }
+        }
+        
+        async function loadTech() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/tech`);
+                const result = await response.json();
+                if (result.success) {
+                    techData = result.data;
+                    renderTech();
+                }
+            } catch (error) {
+                document.getElementById('tech-list').innerHTML = '<div class="loading">正在加载技术动态...</div>';
+            }
+        }
+        
+        function renderNews() {
+            const container = document.getElementById('news-list');
+            if (newsData.length === 0) {
+                container.innerHTML = '<div class="loading">暂无政策资讯</div>';
+                return;
+            }
+            container.innerHTML = newsData.slice(0, 10).map(item => `
+                <div class="card news-card">
+                    <h3>${item.title}</h3>
+                    <div class="meta">${item.source || '未知来源'} · ${item.date || item.pubDate || '未知日期'}</div>
+                    <p>${item.content || item.description || '暂无详情'}</p>
+                </div>
+            `).join('');
+        }
+        
+        function renderTech() {
+            const container = document.getElementById('tech-list');
+            if (techData.length === 0) {
+                container.innerHTML = '<div class="loading">暂无技术动态</div>';
+                return;
+            }
+            container.innerHTML = techData.slice(0, 10).map(item => `
+                <div class="card tech-card">
+                    <h3>${item.title}</h3>
+                    <div class="meta">${item.source || '未知来源'} · ${item.date || item.pubDate || '未知日期'}</div>
+                    <div class="tags">
+                        ${(item.tags || ['技术动态']).map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                    <p style="margin-top:8px;">${item.content || item.description || '暂无详情'}</p>
+                </div>
+            `).join('');
+        }
+        
+        function renderKnowledgeList() {
+            const container = document.getElementById('knowledge-list');
+            container.innerHTML = knowledgeData.map(item => `
+                <div class="knowledge-item">
+                    <span class="category-tag">${item.category}</span>
+                    <h3>${item.title}</h3>
+                    <p>${item.description}</p>
+                </div>
+            `).join('');
+        }
+        
+        function renderCategories() {
+            const container = document.getElementById('category-grid');
+            container.innerHTML = categories.map(cat => `
+                <div class="category-item">
+                    <div class="icon">${cat.icon}</div>
+                    <h4>${cat.name}</h4>
+                    <p>点击查看</p>
+                </div>
+            `).join('');
+        }
+        
+        function setupTabs() {
+            document.querySelectorAll('.tab-item, .nav-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    const tab = item.getAttribute('data-tab');
+                    switchTab(tab);
+                });
+            });
+        }
+        
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            
+            document.querySelector(`.tab-item[data-tab="${tab}"]`).classList.add('active');
+            document.querySelector(`.nav-item[data-tab="${tab}"]`).classList.add('active');
+            
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.getElementById(`${tab}-section`).classList.add('active');
+        }
+        
+        function performSearch() {
+            const keyword = document.getElementById('searchInput').value.toLowerCase();
+            const container = document.getElementById('knowledge-list');
+            
+            const filtered = knowledgeData.filter(item => 
+                item.title.toLowerCase().includes(keyword) || 
+                item.description.toLowerCase().includes(keyword)
+            );
+            
+            container.innerHTML = filtered.map(item => `
+                <div class="knowledge-item">
+                    <span class="category-tag">${item.category}</span>
+                    <h3>${item.title}</h3>
+                    <p>${item.description}</p>
+                </div>
+            `).join('');
+        }
+        
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
