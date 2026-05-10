@@ -1,27 +1,23 @@
 {
-  "version": 2,
-  "builds": [
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "/api/:path*" }
+  ],
+  "headers": [
     {
-      "src": "vercel-api.js",
-      "use": "@vercel/node"
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "s-maxage=300, stale-while-revalidate=600" }
+      ]
     }
   ],
-  "routes": [
+  "crons": [
     {
-      "src": "/api/news",
-      "dest": "/vercel-api.js"
+      "path": "/api/news",
+      "schedule": "0 6 * * *"
     },
     {
-      "src": "/api/tech",
-      "dest": "/vercel-api.js"
-    },
-    {
-      "src": "/api/all",
-      "dest": "/vercel-api.js"
-    },
-    {
-      "src": "/api/health",
-      "dest": "/vercel-api.js"
+      "path": "/api/tech",
+      "schedule": "0 6 * * *"
     }
   ]
 }
