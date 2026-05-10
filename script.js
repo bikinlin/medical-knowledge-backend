@@ -1,4 +1,4 @@
-const API_BASE_URL = '/api';
+const API_BASE_URL = 'https://medical-knowledge-production.up.railway.app/api';
 
 const knowledgeData = [
     {
