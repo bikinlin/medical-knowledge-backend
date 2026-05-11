@@ -16,127 +16,130 @@ let newsData = [
         title: "国家卫健委发布《医院信息化建设标准与规范》",
         source: "国家卫生健康委员会",
         date: "2026-05-08",
-        url: "https://example.com/news/1"
+        url: "https://www.nhc.gov.cn"
     },
     {
         id: 2,
         title: "新版《医疗建筑智能化系统设计标准》GB51348-2025正式实施",
         source: "住房和城乡建设部",
         date: "2026-05-05",
-        url: "https://example.com/news/2"
+        url: "https://www.mohurd.gov.cn"
     },
     {
         id: 3,
         title: "关于推进智慧医院建设的指导意见",
         source: "国家发改委",
         date: "2026-04-28",
-        url: "https://example.com/news/3"
+        url: "https://www.ndrc.gov.cn"
     },
     {
         id: 4,
-        title: "医疗数据安全管理办法出台",
+        title: "医疗数据安全管理办法出台，强化患者隐私保护",
         source: "国家网信办",
         date: "2026-04-20",
-        url: "https://example.com/news/4"
+        url: "https://www.cac.gov.cn"
     },
     {
         id: 5,
         title: "医保信息化建设三年行动计划启动",
         source: "国家医保局",
         date: "2026-04-15",
-        url: "https://example.com/news/5"
+        url: "https://www.nhsa.gov.cn"
     },
     {
         id: 6,
         title: "医院弱电系统工程验收规范更新",
         source: "中国工程建设标准知识服务网",
         date: "2026-04-10",
-        url: "https://example.com/news/6"
+        url: "https://www.ccsn.org.cn"
     }
 ];
 
 let techData = [
     {
         id: 1,
-        title: "5G技术在远程手术中的应用突破",
-        tags: ["5G", "远程医疗"],
+        title: "5G技术在远程手术与医疗弱电系统中的应用突破",
+        tags: ["5G", "远程医疗", "弱电系统"],
         source: "医疗技术前沿",
         date: "2026-05-10"
     },
     {
         id: 2,
-        title: "AI辅助诊断系统准确率突破95%",
-        tags: ["AI", "诊断"],
-        source: "人工智能医疗",
+        title: "AI辅助诊断系统准确率突破95%，智慧医院加速落地",
+        tags: ["AI", "智慧医院", "诊断"],
+        source: "医疗信息化",
         date: "2026-05-06"
     },
     {
         id: 3,
-        title: "新型医用物联网传感器研发成功",
-        tags: ["物联网", "传感器"],
+        title: "新型医用物联网传感器助力医院弱电智能化升级",
+        tags: ["物联网", "弱电智能化", "传感器"],
         source: "医疗器械创新",
         date: "2026-05-01"
     },
     {
         id: 4,
-        title: "区块链技术在医疗数据共享中的应用",
-        tags: ["区块链", "数据共享"],
+        title: "区块链技术在医疗数据共享与弱电安防中的应用",
+        tags: ["区块链", "数据安全", "安防"],
         source: "医疗信息化",
         date: "2026-04-28"
     },
     {
         id: 5,
-        title: "智能病房管理系统全面升级",
-        tags: ["智能病房", "管理系统"],
+        title: "智能病房管理系统全面升级，集成护理呼叫与信息发布",
+        tags: ["智能病房", "护理呼叫", "信息发布"],
         source: "智慧医院",
         date: "2026-04-25"
     },
     {
         id: 6,
-        title: "边缘计算技术在医疗设备中的应用",
-        tags: ["边缘计算", "医疗设备"],
+        title: "边缘计算技术在医疗设备与楼宇自控中的应用",
+        tags: ["边缘计算", "楼宇自控", "医疗设备"],
         source: "技术创新",
         date: "2026-04-20"
     }
 ];
 
-// 起零数据 API 配置 (免费新闻 API)
-const ISAS_API = {
-    baseUrl: "https://api.istero.com/resource/v1",
-    token: process.env.ISAS_TOKEN || "SZtRaLyNZiNWJZpmTnOWNFrRVqwLqORj"
-};
-
-// RSS 源配置 (技术动态)
+// RSS 源配置 - 医疗弱电智能化专业源
 const RSS_SOURCES = {
+    news: [
+        { name: "人民网健康", url: "http://www.people.com.cn/rss/health.xml", type: "rss" },
+        { name: "国家卫健委", url: "https://www.nhc.gov.cn/xcs/yqfkdt/gzbd_index.shtml", type: "html" }
+    ],
     tech: [
-        { name: "36氪", url: "https://36kr.com/feed" },
-        { name: "钛媒体", url: "https://www.tmtpost.com/rss" }
+        { name: "HIT专家网", url: "https://www.hit180.com/feed", type: "rss" },
+        { name: "Medical Device Network", url: "https://www.medicaldevice-network.com/feed/", type: "rss" }
     ]
 };
 
-// 获取起零数据 CCTV 国内新闻
-async function fetchCCTVNews() {
+// 获取国家卫健委新闻 (HTML 解析)
+async function fetchNHCNews() {
     try {
-        const response = await axios.get(`${ISAS_API.baseUrl}/cctv/china/latest/news`, {
+        const response = await axios.get('https://www.nhc.gov.cn/xcs/yqfkdt/gzbd_index.shtml', {
             timeout: 15000,
             headers: {
-                'Authorization': `Bearer ${ISAS_API.token}`,
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
             }
         });
-        
-        if (response.data && response.data.code === 200 && Array.isArray(response.data.data)) {
-            return response.data.data.slice(0, 10).map(item => ({
-                title: item.title,
-                link: item.url,
-                pubDate: item.time ? item.time.split(' ')[0] : new Date().toISOString().split('T')[0],
-                description: item.description || '',
-                poster: item.poster || ''
-            }));
-        }
-        return [];
+        const $ = cheerio.load(response.data);
+        const items = [];
+        $('.zxxx_list li a').each((i, elem) => {
+            if (i < 5) {
+                let href = $(elem).attr('href') || '';
+                if (href && !href.startsWith('http')) {
+                    href = 'https://www.nhc.gov.cn' + href;
+                }
+                items.push({
+                    title: $(elem).text().trim(),
+                    link: href,
+                    pubDate: new Date().toISOString().split('T')[0],
+                    description: ''
+                });
+            }
+        });
+        return items;
     } catch (error) {
-        console.log(`获取CCTV新闻失败: ${error.message}`);
+        console.log(`获取国家卫健委新闻失败: ${error.message}`);
         return [];
     }
 }
@@ -170,40 +173,50 @@ async function fetchRSSData(source) {
 }
 
 async function updateNewsFromAPI() {
-    console.log(`[${new Date().toLocaleString()}] 正在更新政策资讯 (CCTV国内新闻)...`);
+    console.log(`[${new Date().toLocaleString()}] 正在更新政策资讯 (医疗专业源)...`);
     
-    const items = await fetchCCTVNews();
-    if (items.length > 0) {
-        const newNews = items.map((item, index) => ({
-            id: Date.now() + index,
-            title: item.title,
-            source: "CCTV新闻",
-            date: item.pubDate,
-            url: item.link,
-            description: item.description
-        }));
+    for (const source of RSS_SOURCES.news) {
+        let items = [];
+        if (source.type === 'rss') {
+            items = await fetchRSSData(source);
+        } else if (source.type === 'html') {
+            if (source.name === '国家卫健委') {
+                items = await fetchNHCNews();
+            }
+        }
         
-        newsData = [...newNews, ...newsData].slice(0, 20);
-        console.log(`从 CCTV新闻 获取了 ${items.length} 条资讯`);
+        if (items.length > 0) {
+            const newNews = items.map((item, index) => ({
+                id: Date.now() + index + Math.random(),
+                title: item.title,
+                source: source.name,
+                date: item.pubDate || new Date().toISOString().split('T')[0],
+                url: item.link || '',
+                description: item.description || ''
+            }));
+            
+            newsData = [...newNews, ...newsData].slice(0, 30);
+            console.log(`从 ${source.name} 获取了 ${items.length} 条政策资讯`);
+        }
     }
 }
 
 async function updateTechFromRSS() {
-    console.log(`[${new Date().toLocaleString()}] 正在更新技术动态...`);
+    console.log(`[${new Date().toLocaleString()}] 正在更新技术动态 (医疗信息化源)...`);
     
     for (const source of RSS_SOURCES.tech) {
         const items = await fetchRSSData(source);
         if (items.length > 0) {
             const newTech = items.map((item, index) => ({
-                id: Date.now() + index,
+                id: Date.now() + index + Math.random(),
                 title: item.title,
-                tags: ["技术动态"],
+                tags: ["医疗信息化"],
                 source: source.name,
-                date: item.pubDate,
-                url: item.link
+                date: item.pubDate || new Date().toISOString().split('T')[0],
+                url: item.link || ''
             }));
             
-            techData = [...newTech, ...techData].slice(0, 20);
+            techData = [...newTech, ...techData].slice(0, 30);
             console.log(`从 ${source.name} 获取了 ${items.length} 条技术动态`);
         }
     }
