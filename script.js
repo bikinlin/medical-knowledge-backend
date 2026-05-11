@@ -348,8 +348,8 @@ async function fetchAPI(endpoint) {
 
 async function loadDynamicData() {
     const [newsResult, techResult] = await Promise.all([
-        fetchAPI('/api/news'),
-        fetchAPI('/api/tech')
+        fetchAPI('/news'),
+        fetchAPI('/tech')
     ]);
 
     if (newsResult && newsResult.success) {
