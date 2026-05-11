@@ -103,12 +103,11 @@ let techData = [
 // RSS 源配置 - 医疗弱电智能化专业源
 const RSS_SOURCES = {
     news: [
-        { name: "人民网健康", url: "http://www.people.com.cn/rss/health.xml", type: "rss" },
-        { name: "国家卫健委", url: "https://www.nhc.gov.cn/xcs/yqfkdt/gzbd_index.shtml", type: "html" }
+        { name: "国家卫健委", url: "https://www.nhc.gov.cn/xcs/yqfkdt/gzbd_index.shtml", type: "html" },
+        { name: "人民网健康", url: "http://www.people.com.cn/rss/health.xml", type: "rss" }
     ],
     tech: [
-        { name: "HIT专家网", url: "https://www.hit180.com/feed", type: "rss" },
-        { name: "Medical Device Network", url: "https://www.medicaldevice-network.com/feed/", type: "rss" }
+        { name: "HIT专家网", url: "https://www.hit180.com/feed", type: "rss" }
     ]
 };
 
