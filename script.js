@@ -3,93 +3,93 @@ const API_BASE_URL = 'https://medical-knowledge-production.up.railway.app/api';
 const knowledgeData = [
     {
         id: 1,
-        title: "医院智能化综合布线系统设计规范",
-        category: "综合布线",
-        description: "医院智能化综合布线系统是医疗信息化的基础，涵盖语音、数据、图像、多媒体等多种信息传输需求。",
-        content: "医院智能化综合布线系统应满足以下要求：1. 采用模块化、结构化设计，支持未来扩展；2. 满足医疗设备的特殊电磁兼容性要求；3. 关键区域采用冗余设计，确保7×24小时稳定运行；4. 符合《医院建筑智能化系统设计规范》等相关标准。",
+        title: "鍖婚櫌鏅鸿兘鍖栫患鍚堝竷绾跨郴缁熻璁¤鑼?,
+        category: "缁煎悎甯冪嚎",
+        description: "鍖婚櫌鏅鸿兘鍖栫患鍚堝竷绾跨郴缁熸槸鍖荤枟淇℃伅鍖栫殑鍩虹锛屾兜鐩栬闊炽€佹暟鎹€佸浘鍍忋€佸濯掍綋绛夊绉嶄俊鎭紶杈撻渶姹傘€?,
+        content: "鍖婚櫌鏅鸿兘鍖栫患鍚堝竷绾跨郴缁熷簲婊¤冻浠ヤ笅瑕佹眰锛?. 閲囩敤妯″潡鍖栥€佺粨鏋勫寲璁捐锛屾敮鎸佹湭鏉ユ墿灞曪紱2. 婊¤冻鍖荤枟璁惧鐨勭壒娈婄數纾佸吋瀹规€ц姹傦紱3. 鍏抽敭鍖哄煙閲囩敤鍐椾綑璁捐锛岀‘淇?脳24灏忔椂绋冲畾杩愯锛?. 绗﹀悎銆婂尰闄㈠缓绛戞櫤鑳藉寲绯荤粺璁捐瑙勮寖銆嬬瓑鐩稿叧鏍囧噯銆?,
         date: "2026-01-15",
-        icon: "📡"
+        icon: "馃摗"
     },
     {
         id: 2,
-        title: "手术室弱电系统集成方案",
-        category: "医疗专项系统",
-        description: "现代手术室需要集成多种弱电系统，包括手术示教、麻醉信息、医疗影像等，实现数字化手术室。",
-        content: "数字化手术室集成系统包括：1. 手术示教与远程会诊系统；2. 麻醉信息系统(AIS)；3. 医疗影像归档与通信系统(PACS)；4. 手术室环境监控系统；5. 医护对讲与呼叫系统。",
+        title: "鎵嬫湳瀹ゅ急鐢电郴缁熼泦鎴愭柟妗?,
+        category: "鍖荤枟涓撻」绯荤粺",
+        description: "鐜颁唬鎵嬫湳瀹ら渶瑕侀泦鎴愬绉嶅急鐢电郴缁燂紝鍖呮嫭鎵嬫湳绀烘暀銆侀夯閱変俊鎭€佸尰鐤楀奖鍍忕瓑锛屽疄鐜版暟瀛楀寲鎵嬫湳瀹ゃ€?,
+        content: "鏁板瓧鍖栨墜鏈闆嗘垚绯荤粺鍖呮嫭锛?. 鎵嬫湳绀烘暀涓庤繙绋嬩細璇婄郴缁燂紱2. 楹婚唹淇℃伅绯荤粺(AIS)锛?. 鍖荤枟褰卞儚褰掓。涓庨€氫俊绯荤粺(PACS)锛?. 鎵嬫湳瀹ょ幆澧冪洃鎺х郴缁燂紱5. 鍖绘姢瀵硅涓庡懠鍙郴缁熴€?,
         date: "2026-02-20",
-        icon: "🏥"
+        icon: "馃彞"
     },
     {
         id: 3,
-        title: "医院安防监控系统建设要点",
-        category: "安全防范",
-        description: "医院作为人员密集场所，安防监控系统建设至关重要，需覆盖重点区域并满足公安部门要求。",
-        content: "医院安防监控系统要点：1. 重点区域全覆盖（出入口、收费处、药房、电梯等）；2. 采用高清摄像机，保留录像不少于30天；3. 集成智能分析功能，如人员聚集检测、遗留物检测；4. 与公安系统联网，符合《安全防范工程技术标准》。",
+        title: "鍖婚櫌瀹夐槻鐩戞帶绯荤粺寤鸿瑕佺偣",
+        category: "瀹夊叏闃茶寖",
+        description: "鍖婚櫌浣滀负浜哄憳瀵嗛泦鍦烘墍锛屽畨闃茬洃鎺х郴缁熷缓璁捐嚦鍏抽噸瑕侊紝闇€瑕嗙洊閲嶇偣鍖哄煙骞舵弧瓒冲叕瀹夐儴闂ㄨ姹傘€?,
+        content: "鍖婚櫌瀹夐槻鐩戞帶绯荤粺瑕佺偣锛?. 閲嶇偣鍖哄煙鍏ㄨ鐩栵紙鍑哄叆鍙ｃ€佹敹璐瑰銆佽嵂鎴裤€佺數姊瓑锛夛紱2. 閲囩敤楂樻竻鎽勫儚鏈猴紝淇濈暀褰曞儚涓嶅皯浜?0澶╋紱3. 闆嗘垚鏅鸿兘鍒嗘瀽鍔熻兘锛屽浜哄憳鑱氶泦妫€娴嬨€侀仐鐣欑墿妫€娴嬶紱4. 涓庡叕瀹夌郴缁熻仈缃戯紝绗﹀悎銆婂畨鍏ㄩ槻鑼冨伐绋嬫妧鏈爣鍑嗐€嬨€?,
         date: "2026-03-05",
-        icon: "📹"
+        icon: "馃摴"
     },
     {
         id: 4,
-        title: "HIS系统与弱电系统集成方案",
-        category: "信息化系统",
-        description: "医院信息系统(HIS)是医院信息化的核心，需与各弱电系统深度集成，实现数据共享。",
-        content: "HIS系统集成内容：1. 与排队叫号系统对接，实现实时叫号；2. 与门禁系统集成，实现权限统一管理；3. 与病房呼叫系统联动，自动记录护理信息；4. 与医疗设备集成，实现数据自动采集。",
+        title: "HIS绯荤粺涓庡急鐢电郴缁熼泦鎴愭柟妗?,
+        category: "淇℃伅鍖栫郴缁?,
+        description: "鍖婚櫌淇℃伅绯荤粺(HIS)鏄尰闄俊鎭寲鐨勬牳蹇冿紝闇€涓庡悇寮辩數绯荤粺娣卞害闆嗘垚锛屽疄鐜版暟鎹叡浜€?,
+        content: "HIS绯荤粺闆嗘垚鍐呭锛?. 涓庢帓闃熷彨鍙风郴缁熷鎺ワ紝瀹炵幇瀹炴椂鍙彿锛?. 涓庨棬绂佺郴缁熼泦鎴愶紝瀹炵幇鏉冮檺缁熶竴绠＄悊锛?. 涓庣梾鎴垮懠鍙郴缁熻仈鍔紝鑷姩璁板綍鎶ょ悊淇℃伅锛?. 涓庡尰鐤楄澶囬泦鎴愶紝瀹炵幇鏁版嵁鑷姩閲囬泦銆?,
         date: "2026-03-18",
-        icon: "💻"
+        icon: "馃捇"
     },
     {
         id: 5,
-        title: "医用气体监测与报警系统",
-        category: "医疗专项系统",
-        description: "医用气体（氧气、负压吸引、压缩空气等）是医院正常运行的生命线，需要实时监测。",
-        content: "医用气体监测系统功能：1. 实时监测气体压力、流量、纯度；2. 异常情况多级报警（声光、短信、平台）；3. 历史数据记录与趋势分析；4. 与楼宇自控系统联动，实现自动调节。",
+        title: "鍖荤敤姘斾綋鐩戞祴涓庢姤璀︾郴缁?,
+        category: "鍖荤枟涓撻」绯荤粺",
+        description: "鍖荤敤姘斾綋锛堟哀姘斻€佽礋鍘嬪惛寮曘€佸帇缂╃┖姘旂瓑锛夋槸鍖婚櫌姝ｅ父杩愯鐨勭敓鍛界嚎锛岄渶瑕佸疄鏃剁洃娴嬨€?,
+        content: "鍖荤敤姘斾綋鐩戞祴绯荤粺鍔熻兘锛?. 瀹炴椂鐩戞祴姘斾綋鍘嬪姏銆佹祦閲忋€佺函搴︼紱2. 寮傚父鎯呭喌澶氱骇鎶ヨ锛堝０鍏夈€佺煭淇°€佸钩鍙帮級锛?. 鍘嗗彶鏁版嵁璁板綍涓庤秼鍔垮垎鏋愶紱4. 涓庢ゼ瀹囪嚜鎺х郴缁熻仈鍔紝瀹炵幇鑷姩璋冭妭銆?,
         date: "2026-04-02",
-        icon: "💨"
+        icon: "馃挩"
     },
     {
         id: 6,
-        title: "医院楼宇自控系统节能优化",
-        category: "楼宇自控",
-        description: "医院建筑能耗高，通过楼宇自控系统实现空调、照明、电梯等设备的智能控制，达到节能目标。",
-        content: "节能优化措施：1. 空调系统根据人员密度动态调节；2. 照明采用人体感应+自然光感应控制；3. 电梯群控优化调度；4. 能源管理系统(EMS)实时监控，分析能耗数据。",
+        title: "鍖婚櫌妤煎畤鑷帶绯荤粺鑺傝兘浼樺寲",
+        category: "妤煎畤鑷帶",
+        description: "鍖婚櫌寤虹瓚鑳借€楅珮锛岄€氳繃妤煎畤鑷帶绯荤粺瀹炵幇绌鸿皟銆佺収鏄庛€佺數姊瓑璁惧鐨勬櫤鑳芥帶鍒讹紝杈惧埌鑺傝兘鐩爣銆?,
+        content: "鑺傝兘浼樺寲鎺柦锛?. 绌鸿皟绯荤粺鏍规嵁浜哄憳瀵嗗害鍔ㄦ€佽皟鑺傦紱2. 鐓ф槑閲囩敤浜轰綋鎰熷簲+鑷劧鍏夋劅搴旀帶鍒讹紱3. 鐢垫缇ゆ帶浼樺寲璋冨害锛?. 鑳芥簮绠＄悊绯荤粺(EMS)瀹炴椂鐩戞帶锛屽垎鏋愯兘鑰楁暟鎹€?,
         date: "2026-04-20",
-        icon: "🌱"
+        icon: "馃尡"
     },
     {
         id: 7,
-        title: "医护对讲系统技术标准",
-        category: "医护通信",
-        description: "医护对讲系统是病房与护士站之间的重要通信工具，直接影响护理质量和效率。",
-        content: "医护对讲系统要求：1. 双向语音清晰，无杂音；2. 支持紧急呼叫优先；3. 与HIS系统对接，显示患者信息；4. 具备呼叫记录和统计功能；5. 移动端支持，护士随身接收呼叫。",
+        title: "鍖绘姢瀵硅绯荤粺鎶€鏈爣鍑?,
+        category: "鍖绘姢閫氫俊",
+        description: "鍖绘姢瀵硅绯荤粺鏄梾鎴夸笌鎶ゅ＋绔欎箣闂寸殑閲嶈閫氫俊宸ュ叿锛岀洿鎺ュ奖鍝嶆姢鐞嗚川閲忓拰鏁堢巼銆?,
+        content: "鍖绘姢瀵硅绯荤粺瑕佹眰锛?. 鍙屽悜璇煶娓呮櫚锛屾棤鏉傞煶锛?. 鏀寔绱ф€ュ懠鍙紭鍏堬紱3. 涓嶩IS绯荤粺瀵规帴锛屾樉绀烘偅鑰呬俊鎭紱4. 鍏峰鍛煎彨璁板綍鍜岀粺璁″姛鑳斤紱5. 绉诲姩绔敮鎸侊紝鎶ゅ＋闅忚韩鎺ユ敹鍛煎彨銆?,
         date: "2026-05-01",
-        icon: "📞"
+        icon: "馃摓"
     },
     {
         id: 8,
-        title: "医院数据中心建设规范",
-        category: "信息化系统",
-        description: "医院数据中心是信息化系统的核心基础设施，必须保证高可用性、高安全性。",
-        content: "数据中心建设要点：1. 机房等级不低于B级，关键系统采用A级标准；2. UPS供电时间不少于4小时，配备柴油发电机；3. 精密空调恒温恒湿控制；4. 完善的消防和安防系统；5. 采用虚拟化和云计算技术，提高资源利用率。",
+        title: "鍖婚櫌鏁版嵁涓績寤鸿瑙勮寖",
+        category: "淇℃伅鍖栫郴缁?,
+        description: "鍖婚櫌鏁版嵁涓績鏄俊鎭寲绯荤粺鐨勬牳蹇冨熀纭€璁炬柦锛屽繀椤讳繚璇侀珮鍙敤鎬с€侀珮瀹夊叏鎬с€?,
+        content: "鏁版嵁涓績寤鸿瑕佺偣锛?. 鏈烘埧绛夌骇涓嶄綆浜嶣绾э紝鍏抽敭绯荤粺閲囩敤A绾ф爣鍑嗭紱2. UPS渚涚數鏃堕棿涓嶅皯浜?灏忔椂锛岄厤澶囨煷娌瑰彂鐢垫満锛?. 绮惧瘑绌鸿皟鎭掓俯鎭掓箍鎺у埗锛?. 瀹屽杽鐨勬秷闃插拰瀹夐槻绯荤粺锛?. 閲囩敤铏氭嫙鍖栧拰浜戣绠楁妧鏈紝鎻愰珮璧勬簮鍒╃敤鐜囥€?,
         date: "2026-05-05",
-        icon: "🖥️"
+        icon: "馃枼锔?
     },
     {
         id: 9,
-        title: "排队叫号系统在医院的应用",
-        category: "信息化系统",
-        description: "排队叫号系统有效改善医院就诊秩序，提升患者就医体验，提高医院管理效率。",
-        content: "排队叫号系统功能：1. 多渠道取号（自助机、微信、APP）；2. 分诊叫号与HIS对接；3. 候诊区显示屏实时显示叫号信息；4. 叫号统计与分析，优化科室排班；5. 支持过号重排和优先就诊。",
+        title: "鎺掗槦鍙彿绯荤粺鍦ㄥ尰闄㈢殑搴旂敤",
+        category: "淇℃伅鍖栫郴缁?,
+        description: "鎺掗槦鍙彿绯荤粺鏈夋晥鏀瑰杽鍖婚櫌灏辫瘖绉╁簭锛屾彁鍗囨偅鑰呭氨鍖讳綋楠岋紝鎻愰珮鍖婚櫌绠＄悊鏁堢巼銆?,
+        content: "鎺掗槦鍙彿绯荤粺鍔熻兘锛?. 澶氭笭閬撳彇鍙凤紙鑷姪鏈恒€佸井淇°€丄PP锛夛紱2. 鍒嗚瘖鍙彿涓嶩IS瀵规帴锛?. 鍊欒瘖鍖烘樉绀哄睆瀹炴椂鏄剧ず鍙彿淇℃伅锛?. 鍙彿缁熻涓庡垎鏋愶紝浼樺寲绉戝鎺掔彮锛?. 鏀寔杩囧彿閲嶆帓鍜屼紭鍏堝氨璇娿€?,
         date: "2026-05-08",
-        icon: "📋"
+        icon: "馃搵"
     },
     {
         id: 10,
-        title: "医院智能化系统验收标准",
-        category: "工程验收",
-        description: "医院智能化系统完工后需进行严格验收，确保系统符合设计要求和相关标准。",
-        content: "验收内容包括：1. 设备安装质量检查；2. 系统功能测试；3. 性能指标检测；4. 文档资料验收；5. 人员培训考核；6. 试运行稳定性验证。验收需符合《智能建筑工程质量验收规范》GB50339。",
+        title: "鍖婚櫌鏅鸿兘鍖栫郴缁熼獙鏀舵爣鍑?,
+        category: "宸ョ▼楠屾敹",
+        description: "鍖婚櫌鏅鸿兘鍖栫郴缁熷畬宸ュ悗闇€杩涜涓ユ牸楠屾敹锛岀‘淇濈郴缁熺鍚堣璁¤姹傚拰鐩稿叧鏍囧噯銆?,
+        content: "楠屾敹鍐呭鍖呮嫭锛?. 璁惧瀹夎璐ㄩ噺妫€鏌ワ紱2. 绯荤粺鍔熻兘娴嬭瘯锛?. 鎬ц兘鎸囨爣妫€娴嬶紱4. 鏂囨。璧勬枡楠屾敹锛?. 浜哄憳鍩硅鑰冩牳锛?. 璇曡繍琛岀ǔ瀹氭€ч獙璇併€傞獙鏀堕渶绗﹀悎銆婃櫤鑳藉缓绛戝伐绋嬭川閲忛獙鏀惰鑼冦€婫B50339銆?,
         date: "2026-05-10",
-        icon: "✅"
+        icon: "鉁?
     }
 ];
 
@@ -97,19 +97,22 @@ let newsData = [];
 let techData = [];
 
 const categories = [
-    { name: "综合布线", icon: "📡", count: 15 },
-    { name: "医疗专项系统", icon: "🏥", count: 22 },
-    { name: "安全防范", icon: "📹", count: 18 },
-    { name: "信息化系统", icon: "💻", count: 25 },
-    { name: "楼宇自控", icon: "🌱", count: 12 },
-    { name: "医护通信", icon: "📞", count: 10 },
-    { name: "数据中心", icon: "🖥️", count: 8 },
-    { name: "工程验收", icon: "✅", count: 6 }
+    { name: "缁煎悎甯冪嚎", icon: "馃摗", count: 15 },
+    { name: "鍖荤枟涓撻」绯荤粺", icon: "馃彞", count: 22 },
+    { name: "瀹夊叏闃茶寖", icon: "馃摴", count: 18 },
+    { name: "淇℃伅鍖栫郴缁?, icon: "馃捇", count: 25 },
+    { name: "妤煎畤鑷帶", icon: "馃尡", count: 12 },
+    { name: "鍖绘姢閫氫俊", icon: "馃摓", count: 10 },
+    { name: "鏁版嵁涓績", icon: "馃枼锔?, count: 8 },
+    { name: "宸ョ▼楠屾敹", icon: "鉁?, count: 6 }
 ];
 
 async function fetchAPI(endpoint) {
     try {
-        const response = await fetch(`${API_BASE_URL}${endpoint}`);
+        const url = endpoint.startsWith('/api') ? 
+            `https://medical-knowledge-production.up.railway.app${endpoint}` :
+            `${API_BASE_URL}${endpoint}`;
+        const response = await fetch(url);
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         return await response.json();
     } catch (error) {
@@ -148,7 +151,7 @@ function renderNews() {
     if (!grid) return;
     
     if (newsData.length === 0) {
-        grid.innerHTML = '<p style="text-align: center; color: #888; padding: 40px;">正在加载政策资讯...</p>';
+        grid.innerHTML = '<p style="text-align: center; color: #888; padding: 40px;">姝ｅ湪鍔犺浇鏀跨瓥璧勮...</p>';
         return;
     }
     
@@ -156,10 +159,10 @@ function renderNews() {
         <div class="news-card">
             <h3>${item.title}</h3>
             <div class="meta">
-                <span>${item.source || '未知来源'}</span> · 
-                <span>${item.date || item.pubDate || '未知日期'}</span>
+                <span>${item.source || '鏈煡鏉ユ簮'}</span> 路 
+                <span>${item.date || item.pubDate || '鏈煡鏃ユ湡'}</span>
             </div>
-            <p>${item.content || item.description || '暂无详情'}</p>
+            <p>${item.content || item.description || '鏆傛棤璇︽儏'}</p>
         </div>
     `).join('');
 }
@@ -169,7 +172,7 @@ function renderTech() {
     if (!grid) return;
     
     if (techData.length === 0) {
-        grid.innerHTML = '<p style="text-align: center; color: #888; padding: 40px;">正在加载技术动态...</p>';
+        grid.innerHTML = '<p style="text-align: center; color: #888; padding: 40px;">姝ｅ湪鍔犺浇鎶€鏈姩鎬?..</p>';
         return;
     }
     
@@ -177,13 +180,13 @@ function renderTech() {
         <div class="tech-card">
             <h3>${item.title}</h3>
             <div class="meta">
-                <span>${item.source || '未知来源'}</span> · 
-                <span>${item.date || item.pubDate || '未知日期'}</span>
+                <span>${item.source || '鏈煡鏉ユ簮'}</span> 路 
+                <span>${item.date || item.pubDate || '鏈煡鏃ユ湡'}</span>
             </div>
             <div class="tags">
-                ${(item.tags || ['技术动态']).map(tag => `<span class="tag">${tag}</span>`).join('')}
+                ${(item.tags || ['鎶€鏈姩鎬?]).map(tag => `<span class="tag">${tag}</span>`).join('')}
             </div>
-            <p>${item.content || item.description || '暂无详情'}</p>
+            <p>${item.content || item.description || '鏆傛棤璇︽儏'}</p>
         </div>
     `).join('');
 }
@@ -194,7 +197,7 @@ function renderCategories() {
         <div class="category-card" data-category="${cat.name}">
             <div class="category-icon">${cat.icon}</div>
             <h3>${cat.name}</h3>
-            <p>共 ${cat.count} 篇知识文章</p>
+            <p>鍏?${cat.count} 绡囩煡璇嗘枃绔?/p>
         </div>
     `).join('');
 }
@@ -206,11 +209,11 @@ function renderKnowledgeGrid() {
             <div class="knowledge-card-content">
                 <h3>${item.title}</h3>
                 <div class="meta">
-                    <span>${item.category}</span> · 
+                    <span>${item.category}</span> 路 
                     <span>${item.date}</span>
                 </div>
                 <p>${item.description}</p>
-                <a href="#" class="read-more" data-id="${item.id}">阅读更多 →</a>
+                <a href="#" class="read-more" data-id="${item.id}">闃呰鏇村 鈫?/a>
             </div>
         </div>
     `).join('');
@@ -249,7 +252,7 @@ function renderSearchResults(results) {
     const container = document.getElementById('resultsContainer');
     
     if (results.length === 0) {
-        container.innerHTML = '<p style="text-align: center; color: #888; padding: 40px;">未找到相关知识内容</p>';
+        container.innerHTML = '<p style="text-align: center; color: #888; padding: 40px;">鏈壘鍒扮浉鍏崇煡璇嗗唴瀹?/p>';
         return;
     }
     
