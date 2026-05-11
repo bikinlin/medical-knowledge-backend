@@ -100,16 +100,46 @@ let techData = [
     }
 ];
 
+// 起零数据 API 配置 (免费新闻 API)
+const ISAS_API = {
+    baseUrl: "https://api.istero.com/resource/v1",
+    token: process.env.ISAS_TOKEN || "SZtRaLyNZiNWJZpmTnOWNFrRVqwLqORj"
+};
+
+// RSS 源配置 (技术动态)
 const RSS_SOURCES = {
-    news: [
-        { name: "新华网健康", url: "http://www.xinhuanet.com/health/news_health.xml" },
-        { name: "人民网健康", url: "http://health.people.com.cn/rss/news.xml" }
-    ],
     tech: [
         { name: "36氪", url: "https://36kr.com/feed" },
         { name: "钛媒体", url: "https://www.tmtpost.com/rss" }
     ]
 };
+
+// 获取起零数据 CCTV 国内新闻
+async function fetchCCTVNews() {
+    try {
+        const response = await axios.get(`${ISAS_API.baseUrl}/cctv/china/latest/news`, {
+            timeout: 15000,
+            headers: {
+                'Authorization': `Bearer ${ISAS_API.token}`,
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+            }
+        });
+        
+        if (response.data && response.data.code === 200 && Array.isArray(response.data.data)) {
+            return response.data.data.slice(0, 10).map(item => ({
+                title: item.title,
+                link: item.url,
+                pubDate: item.time ? item.time.split(' ')[0] : new Date().toISOString().split('T')[0],
+                description: item.description || '',
+                poster: item.poster || ''
+            }));
+        }
+        return [];
+    } catch (error) {
+        console.log(`获取CCTV新闻失败: ${error.message}`);
+        return [];
+    }
+}
 
 async function fetchRSSData(source) {
     try {
@@ -139,23 +169,22 @@ async function fetchRSSData(source) {
     }
 }
 
-async function updateNewsFromRSS() {
-    console.log(`[${new Date().toLocaleString()}] 正在更新政策资讯...`);
+async function updateNewsFromAPI() {
+    console.log(`[${new Date().toLocaleString()}] 正在更新政策资讯 (CCTV国内新闻)...`);
     
-    for (const source of RSS_SOURCES.news) {
-        const items = await fetchRSSData(source);
-        if (items.length > 0) {
-            const newNews = items.map((item, index) => ({
-                id: Date.now() + index,
-                title: item.title,
-                source: source.name,
-                date: item.pubDate,
-                url: item.link
-            }));
-            
-            newsData = [...newNews, ...newsData].slice(0, 20);
-            console.log(`从 ${source.name} 获取了 ${items.length} 条资讯`);
-        }
+    const items = await fetchCCTVNews();
+    if (items.length > 0) {
+        const newNews = items.map((item, index) => ({
+            id: Date.now() + index,
+            title: item.title,
+            source: "CCTV新闻",
+            date: item.pubDate,
+            url: item.link,
+            description: item.description
+        }));
+        
+        newsData = [...newNews, ...newsData].slice(0, 20);
+        console.log(`从 CCTV新闻 获取了 ${items.length} 条资讯`);
     }
 }
 
@@ -207,7 +236,7 @@ app.get('/api/all', (req, res) => {
 
 app.post('/api/update', async (req, res) => {
     try {
-        await updateNewsFromRSS();
+        await updateNewsFromAPI();
         await updateTechFromRSS();
         res.json({
             success: true,
@@ -237,7 +266,7 @@ rule.minute = 0;
 
 const dailyJob = schedule.scheduleJob('0 6 * * *', async () => {
     console.log('执行每日自动更新任务...');
-    await updateNewsFromRSS();
+    await updateNewsFromAPI();
     await updateTechFromRSS();
 });
 
@@ -259,7 +288,7 @@ app.listen(PORT, () => {
     `);
     
     setTimeout(() => {
-        updateNewsFromRSS();
+        updateNewsFromAPI();
         updateTechFromRSS();
     }, 3000);
 });
