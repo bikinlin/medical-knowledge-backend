@@ -3,6 +3,7 @@ const cors = require('cors');
 const axios = require('axios');
 const cheerio = require('cheerio');
 const schedule = require('node-schedule');
+const { fetchFullContent, fetchBatchContent, getCacheStats } = require('./contentFetcher');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -221,29 +222,60 @@ async function updateTechFromRSS() {
     }
 }
 
-app.get('/api/news', (req, res) => {
-    res.json({
-        success: true,
-        data: newsData,
-        updateTime: new Date().toISOString()
-    });
+app.get('/api/news', async (req, res) => {
+    try {
+        // 为没有content的文章抓取全文
+        const enrichedNews = await fetchBatchContent(newsData);
+        res.json({
+            success: true,
+            data: enrichedNews,
+            updateTime: new Date().toISOString()
+        });
+    } catch (error) {
+        res.json({
+            success: true,
+            data: newsData,
+            updateTime: new Date().toISOString()
+        });
+    }
 });
 
-app.get('/api/tech', (req, res) => {
-    res.json({
-        success: true,
-        data: techData,
-        updateTime: new Date().toISOString()
-    });
+app.get('/api/tech', async (req, res) => {
+    try {
+        // 为没有content的文章抓取全文
+        const enrichedTech = await fetchBatchContent(techData);
+        res.json({
+            success: true,
+            data: enrichedTech,
+            updateTime: new Date().toISOString()
+        });
+    } catch (error) {
+        res.json({
+            success: true,
+            data: techData,
+            updateTime: new Date().toISOString()
+        });
+    }
 });
 
-app.get('/api/all', (req, res) => {
-    res.json({
-        success: true,
-        news: newsData,
-        tech: techData,
-        updateTime: new Date().toISOString()
-    });
+app.get('/api/all', async (req, res) => {
+    try {
+        const enrichedNews = await fetchBatchContent(newsData);
+        const enrichedTech = await fetchBatchContent(techData);
+        res.json({
+            success: true,
+            news: enrichedNews,
+            tech: enrichedTech,
+            updateTime: new Date().toISOString()
+        });
+    } catch (error) {
+        res.json({
+            success: true,
+            news: newsData,
+            tech: techData,
+            updateTime: new Date().toISOString()
+        });
+    }
 });
 
 app.post('/api/update', async (req, res) => {
@@ -264,12 +296,34 @@ app.post('/api/update', async (req, res) => {
 });
 
 app.get('/api/health', (req, res) => {
+    const cacheStats = getCacheStats();
     res.json({
         status: 'ok',
         uptime: process.uptime(),
         newsCount: newsData.length,
-        techCount: techData.length
+        techCount: techData.length,
+        cacheSize: cacheStats.size
     });
+});
+
+// 按需抓取单篇文章全文
+app.get('/api/article', async (req, res) => {
+    const url = req.query.url;
+    if (!url) {
+        return res.status(400).json({ success: false, message: '缺少 url 参数' });
+    }
+    
+    const result = await fetchFullContent(url);
+    if (result.success) {
+        res.json({ success: true, content: result.content, fromCache: result.fromCache });
+    } else {
+        res.status(404).json({ success: false, message: '内容获取失败', error: result.error });
+    }
+});
+
+// 缓存状态
+app.get('/api/cache', (req, res) => {
+    res.json(getCacheStats());
 });
 
 const rule = new schedule.RecurrenceRule();
