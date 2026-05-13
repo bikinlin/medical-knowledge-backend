@@ -416,6 +416,73 @@ section h2 {
     text-align: center;
 }
 
+/* 可点击的新闻卡片 */
+.clickable-card {
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.clickable-card:hover {
+    transform: translateX(10px) translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+/* 查看原文按钮 */
+.view-original-btn {
+    display: inline-block;
+    color: #ff9800;
+    font-size: 13px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.view-original-btn:hover {
+    color: #e65100;
+    text-decoration: underline;
+}
+
+/* 内容预览折叠 */
+.content-preview.collapsed {
+    max-height: 4.5em;
+    overflow: hidden;
+    position: relative;
+}
+
+.content-preview.collapsed::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2em;
+    background: linear-gradient(transparent, white);
+}
+
+.content-preview {
+    color: #555;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* 新闻描述 */
+.news-desc {
+    color: #555;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 8px;
+}
+
+/* 阅读更多按钮 */
+.read-more-btn {
+    transition: color 0.3s;
+}
+
+.read-more-btn:hover {
+    color: #1e3c72 !important;
+    text-decoration: underline;
+}
+
 footer {
     background: #1e3c72;
     color: white;
