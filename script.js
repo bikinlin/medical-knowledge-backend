@@ -382,22 +382,19 @@ function renderNews() {
     
     grid.innerHTML = newsData.slice(0, 6).map((item, index) => {
         const content = item.content || item.description || '';
-        const hasLongContent = content.length > 150;
         const hasLink = item.url || item.link;
+        const hasContent = content && content.length > 10;
         
         return `
-            <div class="news-card" style="cursor: default;">
+            <div class="news-card ${hasLink ? 'clickable-card' : ''}" ${hasLink ? 'data-url="' + (item.url || item.link) + '"' : ''}>
                 <h3>${item.title}</h3>
                 <div class="meta">
                     <span>${item.source || '未知来源'}</span> · 
                     <span>${item.date || item.pubDate || '未知日期'}</span>
                 </div>
-                <div class="article-content" data-index="${index}" data-type="news">
-                    <p class="content-preview">${content || '暂无详情'}</p>
-                </div>
+                ${hasContent ? '<p class="news-desc">' + content.substring(0, 150) + (content.length > 150 ? '...' : '') + '</p>' : ''}
                 <div class="article-actions" style="display: flex; gap: 10px; margin-top: 8px; align-items: center;">
-                    ${hasLongContent ? '<button class="read-more-btn" data-index="' + index + '" data-type="news" style="background: none; border: none; color: #4A90D9; cursor: pointer; font-size: 13px; padding: 0;">阅读更多 ▼</button>' : ''}
-                    ${hasLink ? '<a href="' + (item.url || item.link) + '" target="_blank" rel="noopener noreferrer" style="color: #888; font-size: 12px; text-decoration: none;">查看原文 ↗</a>' : ''}
+                    ${hasLink ? '<a href="' + (item.url || item.link) + '" target="_blank" rel="noopener noreferrer" class="view-original-btn" onclick="event.stopPropagation();">查看原文 ↗</a>' : ''}
                 </div>
             </div>
         `;
@@ -428,9 +425,7 @@ function renderTech() {
                 <div class="tags">
                     ${(item.tags || ['技术动态']).map(tag => `<span class="tag">${tag}</span>`).join('')}
                 </div>
-                <div class="article-content" data-index="${index}" data-type="tech">
-                    <p class="content-preview">${content || '暂无详情'}</p>
-                </div>
+                ${content ? '<div class="article-content" data-index="' + index + '" data-type="tech"><p class="content-preview' + (hasLongContent ? ' collapsed' : '') + '">' + content + '</p></div>' : ''}
                 <div class="article-actions" style="display: flex; gap: 10px; margin-top: 8px; align-items: center;">
                     ${hasLongContent ? '<button class="read-more-btn" data-index="' + index + '" data-type="tech" style="background: none; border: none; color: #4A90D9; cursor: pointer; font-size: 13px; padding: 0;">阅读更多 ▼</button>' : ''}
                     ${hasLink ? '<a href="' + (item.url || item.link) + '" target="_blank" rel="noopener noreferrer" style="color: #888; font-size: 12px; text-decoration: none;">查看原文 ↗</a>' : ''}
@@ -597,20 +592,25 @@ function setupEventListeners() {
             }
         }
         
+        // 新闻卡片点击跳转原文
+        const clickableCard = e.target.closest('.clickable-card');
+        if (clickableCard && !e.target.closest('a')) {
+            const url = clickableCard.getAttribute('data-url');
+            if (url) window.open(url, '_blank', 'noopener,noreferrer');
+        }
+        
         // 新闻/技术动态"阅读更多"按钮
         if (e.target.classList.contains('read-more-btn')) {
             const index = e.target.getAttribute('data-index');
             const type = e.target.getAttribute('data-type');
             const contentEl = document.querySelector(`.article-content[data-index="${index}"][data-type="${type}"] .content-preview`);
             if (contentEl) {
-                const isCollapsed = contentEl.style.maxHeight && contentEl.style.maxHeight !== 'none';
+                const isCollapsed = contentEl.classList.contains('collapsed');
                 if (isCollapsed) {
-                    contentEl.style.maxHeight = 'none';
-                    contentEl.style.overflow = 'visible';
+                    contentEl.classList.remove('collapsed');
                     e.target.textContent = '收起 ▲';
                 } else {
-                    contentEl.style.maxHeight = '4.5em';
-                    contentEl.style.overflow = 'hidden';
+                    contentEl.classList.add('collapsed');
                     e.target.textContent = '阅读更多 ▼';
                 }
             }
