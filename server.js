@@ -243,14 +243,6 @@ app.get('/api/news', async (req, res) => {
         });
     }
 });
-    } catch (error) {
-        res.json({
-            success: true,
-            data: newsData,
-            updateTime: new Date().toISOString()
-        });
-    }
-});
 
 app.get('/api/tech', async (req, res) => {
     try {
@@ -267,23 +259,13 @@ app.get('/api/tech', async (req, res) => {
         });
     }
 });
-    } catch (error) {
-        res.json({
-            success: true,
-            data: techData,
-            updateTime: new Date().toISOString()
-        });
-    }
-});
 
 app.get('/api/all', async (req, res) => {
     try {
-        const enrichedNews = await fetchBatchContent(newsData);
-        const enrichedTech = await fetchBatchContent(techData);
         res.json({
             success: true,
-            news: enrichedNews,
-            tech: enrichedTech,
+            news: newsData,
+            tech: techData,
             updateTime: new Date().toISOString()
         });
     } catch (error) {
