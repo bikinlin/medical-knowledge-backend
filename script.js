@@ -380,16 +380,69 @@ function renderNews() {
         return;
     }
     
-    grid.innerHTML = newsData.slice(0, 6).map(item => `
-        <div class="news-card">
-            <h3>${item.title}</h3>
-            <div class="meta">
-                <span>${item.source || '未知来源'}</span> · 
-                <span>${item.date || item.pubDate || '未知日期'}</span>
+    grid.innerHTML = newsData.slice(0, 6).map((item, index) => {
+        const content = item.content || item.description || '';
+        const hasLongContent = content.length > 150;
+        const hasLink = item.url || item.link;
+        
+        return `
+            <div class="news-card" style="cursor: default;">
+                <h3>${item.title}</h3>
+                <div class="meta">
+                    <span>${item.source || '未知来源'}</span> · 
+                    <span>${item.date || item.pubDate || '未知日期'}</span>
+                </div>
+                <div class="article-content" data-index="${index}" data-type="news">
+                    <p class="content-preview">${content || '暂无详情'}</p>
+                </div>
+                <div class="article-actions" style="display: flex; gap: 10px; margin-top: 8px; align-items: center;">
+                    ${hasLongContent ? '<button class="read-more-btn" data-index="' + index + '" data-type="news" style="background: none; border: none; color: #4A90D9; cursor: pointer; font-size: 13px; padding: 0;">阅读更多 ▼</button>' : ''}
+                    ${hasLink ? '<a href="' + (item.url || item.link) + '" target="_blank" rel="noopener noreferrer" style="color: #888; font-size: 12px; text-decoration: none;">查看原文 ↗</a>' : ''}
+                </div>
             </div>
-            <p>${item.content || item.description || '暂无详情'}</p>
-        </div>
-    `).join('');
+        `;
+    }).join('');
+}
+
+function renderTech() {
+    const grid = document.getElementById('techGrid');
+    if (!grid) return;
+    
+    if (techData.length === 0) {
+        grid.innerHTML = '<p style="text-align: center; color: #888; padding: 40px;">正在加载技术动态...</p>';
+        return;
+    }
+    
+    grid.innerHTML = techData.slice(0, 6).map((item, index) => {
+        const content = item.content || item.description || '';
+        const hasLongContent = content.length > 150;
+        const hasLink = item.url || item.link;
+        
+        return `
+            <div class="tech-card" style="cursor: default;">
+                <h3>${item.title}</h3>
+                <div class="meta">
+                    <span>${item.source || '未知来源'}</span> · 
+                    <span>${item.date || item.pubDate || '未知日期'}</span>
+                </div>
+                <div class="tags">
+                    ${(item.tags || ['技术动态']).map(tag => `<span class="tag">${tag}</span>`).join('')}
+                </div>
+                <div class="article-content" data-index="${index}" data-type="tech">
+                    <p class="content-preview">${content || '暂无详情'}</p>
+                </div>
+                <div class="article-actions" style="display: flex; gap: 10px; margin-top: 8px; align-items: center;">
+                    ${hasLongContent ? '<button class="read-more-btn" data-index="' + index + '" data-type="tech" style="background: none; border: none; color: #4A90D9; cursor: pointer; font-size: 13px; padding: 0;">阅读更多 ▼</button>' : ''}
+                    ${hasLink ? '<a href="' + (item.url || item.link) + '" target="_blank" rel="noopener noreferrer" style="color: #888; font-size: 12px; text-decoration: none;">查看原文 ↗</a>' : ''}
+                </div>
+            </div>
+        `;
+    }).join('');
+}none;">查看原文 ↗</a>' : ''}
+                </div>
+            </div>
+        `;
+    }).join('');
 }
 
 function renderTech() {
@@ -541,6 +594,25 @@ function setupEventListeners() {
                 const isHidden = detailEl.style.display === 'none';
                 detailEl.style.display = isHidden ? 'block' : 'none';
                 e.target.textContent = isHidden ? '收起 \u2191' : '阅读更多 \u2192';
+            }
+        }
+        
+        // 新闻/技术动态"阅读更多"按钮
+        if (e.target.classList.contains('read-more-btn')) {
+            const index = e.target.getAttribute('data-index');
+            const type = e.target.getAttribute('data-type');
+            const contentEl = document.querySelector(`.article-content[data-index="${index}"][data-type="${type}"] .content-preview`);
+            if (contentEl) {
+                const isCollapsed = contentEl.style.maxHeight && contentEl.style.maxHeight !== 'none';
+                if (isCollapsed) {
+                    contentEl.style.maxHeight = 'none';
+                    contentEl.style.overflow = 'visible';
+                    e.target.textContent = '收起 ▲';
+                } else {
+                    contentEl.style.maxHeight = '4.5em';
+                    contentEl.style.overflow = 'hidden';
+                    e.target.textContent = '阅读更多 ▼';
+                }
             }
         }
     });
