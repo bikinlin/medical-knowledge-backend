@@ -433,35 +433,6 @@ function renderTech() {
             </div>
         `;
     }).join('');
-}none;">查看原文 ↗</a>' : ''}
-                </div>
-            </div>
-        `;
-    }).join('');
-}
-
-function renderTech() {
-    const grid = document.getElementById('techGrid');
-    if (!grid) return;
-    
-    if (techData.length === 0) {
-        grid.innerHTML = '<p style="text-align: center; color: #888; padding: 40px;">正在加载技术动态...</p>';
-        return;
-    }
-    
-    grid.innerHTML = techData.slice(0, 6).map(item => `
-        <div class="tech-card">
-            <h3>${item.title}</h3>
-            <div class="meta">
-                <span>${item.source || '未知来源'}</span> · 
-                <span>${item.date || item.pubDate || '未知日期'}</span>
-            </div>
-            <div class="tags">
-                ${(item.tags || ['技术动态']).map(tag => `<span class="tag">${tag}</span>`).join('')}
-            </div>
-            <p>${item.content || item.description || '暂无详情'}</p>
-        </div>
-    `).join('');
 }
 
 function renderCategories() {
